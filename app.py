@@ -9,11 +9,13 @@ st.set_page_config(page_title="Environmental Testing Dashboard", layout="wide")
 @st.cache_data
 def load_data():
     try:
-        # قراءة الملف الذي تم إنشاؤه سابقاً
-        df = pd.read_csv("Master_Environment_Testing_Template.csv")
+        # التعديل هنا: قراءة ملف الإكسل الجديد بدلاً من CSV
+        # تأكد أن اسم الملف هنا يطابق تماماً الملف الذي رفعته
+        df = pd.read_excel("Smart_Lab_System_Full_Data.xlsx", engine='openpyxl') 
         return df
-    except FileNotFoundError:
-        st.error("عفواً، لم يتم العثور على ملف البيانات (Master_Environment_Testing_Template.csv). تأكد من وجوده بجوار ملف الكود.")
+    except Exception as e:
+        # هذا السطر سيظهر لك تفاصيل الخطأ الحقيقي بدلاً من الرسالة العامة
+        st.error(f"Error loading data: {e}")
         return pd.DataFrame()
 
 df = load_data()
@@ -96,4 +98,5 @@ if not df.empty:
     )
 
 else:
+
     st.warning("لا توجد بيانات لعرضها. تأكد من تشغيل كود دمج الملفات أولاً.")
