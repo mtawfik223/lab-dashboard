@@ -18,3 +18,4 @@ def load_data():
         return pd.DataFrame()
 
 # ... (باقي الكود كما هو)
+
